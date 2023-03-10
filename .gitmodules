@@ -1,0 +1,3 @@
+[submodule "libarduino"]
+	path = libarduino
+	url = https://github.com/lonezor/libarduino.git
