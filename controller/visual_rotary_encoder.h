@@ -2,6 +2,8 @@
 
 #include <stdint.h>
 
+//-------------------------------------------------------------------------------------------------------------------
+
 /*
  ****** PIN CONFIGURATION ******
  *
@@ -20,6 +22,12 @@
  *
  */
 
+//-------------------------------------------------------------------------------------------------------------------
+
+/** Initialize sensor */
+void
+visual_rotary_encoder_init();
+
 /** Get value between 0-1023 */
 uint16_t
 visual_rotary_encoder_get_value();
@@ -31,6 +39,8 @@ visual_rotary_encoder_set_value(uint16_t v);
 /** True if button is pressed */
 bool
 visual_rotary_encoder_btn_pressed();
+
+//-------------------------------------------------------------------------------------------------------------------
 
 
 

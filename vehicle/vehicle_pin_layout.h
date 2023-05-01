@@ -1,0 +1,11 @@
+#pragma once
+
+#include <common_pin_layout.h>
+
+#define VEHICLE_PIN_LIVE_VIDEO_FEED_MOTOR_PWM (10)
+#define VEHICLE_PIN_LIVE_VIDEO_FEED_MOTOR_IN1 (9)
+#define VEHICLE_PIN_LIVE_VIDEO_FEED_MOTOR_IN2 (8)
+
+#define VEHICLE_PIN_NEOPIXEL_LEFT_PIN (22)
+#define VEHICLE_PIN_NEOPIXEL_RIGHT_PIN (23)
+

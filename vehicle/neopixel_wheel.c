@@ -1,5 +1,5 @@
 #include "neopixel_wheel.h"
-#include "pin_layout.h"
+#include "vehicle_pin_layout.h"
 
 #include <Adafruit_NeoPixel.h>
 
@@ -16,21 +16,7 @@
 //   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
 //   NEO_RGBW    Pixels are wired for RGBW bitstream (NeoPixel RGBW products)
 
-// IMPORTANT: To reduce NeoPixel burnout risk, add 1000 uF capacitor across
-// pixel power leads, add 300 - 500 Ohm resistor on first pixel's data input
-// and minimize distance between Arduino and first pixel.  Avoid connecting
-// on a live circuit...if you must, connect GND first.
-
-static Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, PIN_NEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
-
-// Fill the dots one after the other with a color
-static void color_wipe(uint32_t c, uint8_t wait) {
-  for(uint16_t i=0; i<strip.numPixels(); i++) {
-    strip.setPixelColor(i, c);
-    strip.show();
-    delay(wait);
-  }
-}
+static Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, VEHICLE_PIN_NEOPIXEL_LEFT_PIN, NEO_GRB + NEO_KHZ800);
 
 // Input a value 0 to 255 to get a color value.
 // The colours are a transition r - g - b - back to r.
@@ -47,29 +33,33 @@ static uint32_t wheel(byte wheel_pos) {
   return strip.Color(wheel_pos * 3, 255 - wheel_pos * 3, 0);
 }
 
-static void rainbow(uint8_t wait) {
-  uint16_t i, j;
 
-  for(j=0; j<256; j++) {
-    for(i=0; i<strip.numPixels(); i++) {
-      strip.setPixelColor(i, wheel((i+j) & 255));
-    }
-    strip.show();
-    delay(wait);
-  }
-}
 
 void 
 neopixel_wheel_animation_setup()
 {
   strip.begin();
+  
   strip.setBrightness(50);
-  strip.show(); // Initialize all pixels to 'off'
+
+  // Initialize all pixels to 'off'
+  strip.show(); 
 }
 
 void 
-neopixel_wheel_animation_loop()
+neopixel_wheel_animation_tick()
 {
-  color_wipe(strip.Color(255, 0, 0), 50); // Red
-  rainbow(20);
+
+   static uint16_t i = 0;
+   static uint16_t j = 0;
+
+   for(i=0; i<strip.numPixels(); i++) {
+    strip.setPixelColor(i, wheel((i+j) & 255));
+   }
+   strip.show();
+
+  j++;
+  if (j == 256) {
+    j = 0;
+  }
 }

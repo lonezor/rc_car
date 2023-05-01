@@ -4,7 +4,5 @@ void
 neopixel_wheel_animation_setup();
 
 void 
-neopixel_wheel_animation_loop();
-
-
+neopixel_wheel_animation_tick();
 

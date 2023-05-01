@@ -1,6 +1,8 @@
 #include "live_video_feed_motor.h"
 #include "interpolation.h"
-#include "pin_layout.h"
+#include "vehicle_pin_layout.h"
+
+//-------------------------------------------------------------------------------------------------------------------
 
 /* Lerp variables */
 double g_pwm_left_rotation = 0;
@@ -8,6 +10,8 @@ double g_pwm_right_rotation = 0;
 
 /** Current physical rotation state */
 enum rotation g_physical_rotation = rotation_none;
+
+//-------------------------------------------------------------------------------------------------------------------
 
 void live_video_feed_motor_tick(int joystick_rotation, int joystick_button)
 {
@@ -20,7 +24,7 @@ void live_video_feed_motor_tick(int joystick_rotation, int joystick_button)
   }
   // Override: Joystick button requests instant zero rotation
   bool zero_rpm_override = false;
-  if (joystick_button == 0) {
+  if (joystick_button > 0) {
     user_requested_rotation = rotation_none;
     zero_rpm_override = true;
     g_pwm_left_rotation = 0;
@@ -37,16 +41,16 @@ void live_video_feed_motor_tick(int joystick_rotation, int joystick_button)
 
     switch (g_physical_rotation) {
       case rotation_none:
-        digitalWrite(PIN_LIVE_VIDEO_FEED_MOTOR_IN1,LOW);
-        digitalWrite(PIN_LIVE_VIDEO_FEED_MOTOR_IN2,LOW);
+        digitalWrite(VEHICLE_PIN_LIVE_VIDEO_FEED_MOTOR_IN1,LOW);
+        digitalWrite(VEHICLE_PIN_LIVE_VIDEO_FEED_MOTOR_IN2,LOW);
         break;
       case rotation_left:
-        digitalWrite(PIN_LIVE_VIDEO_FEED_MOTOR_IN1,HIGH);
-        digitalWrite(PIN_LIVE_VIDEO_FEED_MOTOR_IN2,LOW);
+        digitalWrite(VEHICLE_PIN_LIVE_VIDEO_FEED_MOTOR_IN1,HIGH);
+        digitalWrite(VEHICLE_PIN_LIVE_VIDEO_FEED_MOTOR_IN2,LOW);
         break;
       case rotation_right:
-        digitalWrite(PIN_LIVE_VIDEO_FEED_MOTOR_IN1,LOW);
-        digitalWrite(PIN_LIVE_VIDEO_FEED_MOTOR_IN2,HIGH);
+        digitalWrite(VEHICLE_PIN_LIVE_VIDEO_FEED_MOTOR_IN1,LOW);
+        digitalWrite(VEHICLE_PIN_LIVE_VIDEO_FEED_MOTOR_IN2,HIGH);
         break;
     }
   }
@@ -94,23 +98,20 @@ void live_video_feed_motor_tick(int joystick_rotation, int joystick_button)
   /*** Write PWM using for the physically active direction ***/
   switch (g_physical_rotation) {
     case rotation_left:
-      analogWrite(PIN_LIVE_VIDEO_FEED_MOTOR_PWM,(int)g_pwm_left_rotation);
+      analogWrite(VEHICLE_PIN_LIVE_VIDEO_FEED_MOTOR_PWM,(int)g_pwm_left_rotation);
       break;
     case rotation_right:
-      analogWrite(PIN_LIVE_VIDEO_FEED_MOTOR_PWM,(int)g_pwm_right_rotation);
+      analogWrite(VEHICLE_PIN_LIVE_VIDEO_FEED_MOTOR_PWM,(int)g_pwm_right_rotation);
       break;
   }
   
 #ifdef DEBUG
   char msg[1024];
-  snprintf(msg, sizeof(msg), "joystick_rotation %d, joystick_button %d, left %d, right %d", joystick_rotation, joystick_button, (int)g_pwm_left_rotation, (int)g_pwm_right_rotation);
+  snprintf(msg, sizeof(msg), "joystick_rotation %d, joystick_button %d, left %d, right %d", 
+    joystick_rotation, joystick_button,
+    (int)g_pwm_left_rotation, (int)g_pwm_right_rotation);
   Serial.println(msg); 
 #endif
-
-  
-
-
-
-
-
 }
+
+//-------------------------------------------------------------------------------------------------------------------

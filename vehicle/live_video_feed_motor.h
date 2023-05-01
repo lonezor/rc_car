@@ -2,6 +2,8 @@
 
 #include "general.h"
 
+//-------------------------------------------------------------------------------------------------------------------
+
 /* Tuning for horizontal joystick */
 #define LEFT_ROTATION_SENSOR_TRESHOLD (505)
 #define RIGHT_ROTATION_SENSOR_TRESHOLD (520)
@@ -18,6 +20,11 @@ enum rotation {
   rotation_right,
 };
 
+//-------------------------------------------------------------------------------------------------------------------
+
 void live_video_feed_motor_tick(int joystick_rotation, int joystick_button);
+
+//-------------------------------------------------------------------------------------------------------------------
+
 
  

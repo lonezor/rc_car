@@ -1,0 +1,23 @@
+{
+    "files.associations": {
+        "wireless_protocol.h": "c",
+        "inet.h": "c",
+        "pin_configuration.h": "c",
+        "common_pin_layout.h": "c",
+        "virtualwire.h": "c",
+        "vehicle_pin_layout.h": "c",
+        "array": "c",
+        "deque": "c",
+        "string": "c",
+        "unordered_map": "c",
+        "vector": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "span": "c",
+        "span_ext": "c",
+        "virtual_wire.h": "c",
+        "general.h": "c",
+        "neopixel_wheel.h": "c",
+        "vehicle.h": "c"
+    }
+}

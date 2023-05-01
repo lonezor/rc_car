@@ -8,20 +8,27 @@
 CFLAGS_HW_CFG := -mmcu=atmega2560 -DF_CPU=16000000
 AVRDUDE_HW_CFG := -p m2560 -c stk500v2 -P/dev/ttyACM0
 
+# Arduino Nano
+#CFLAGS_HW_CFG := -mmcu=atmega328p -DF_CPU=16000000
+#AVRDUDE_HW_CFG := -p m328p -c stk500v2 -P/dev/ttyACM0
+
+# Build mode
+#CFLAGS_BUILD_MODE := -DPCU_BUILD
+#CFLAGS_BUILD_MODE := -DSCU_BUILD
+CFLAGS_BUILD_MODE := -DVMU_BUILD
+
 CC=avr-g++
 CPP=avr-g++
 AR=avr-ar
 LD=avr-ld
 OBJCOPY=avr-objcopy
-CFLAGS_ELF_OUTPUT=$(CFLAGS_HW_CFG) -Wall -Os -L ../libarduino -L ../libcommon
-CFLAGS=-c $(CFLAGS_HW_CFG) -Wall -Os -I ../libarduino -I ../libcommon
+CFLAGS_ELF_OUTPUT=$(CFLAGS_HW_CFG) $(CFLAGS_BUILD_MODE) -Wall -Os -L ../libarduino -L ../libcommon
+CFLAGS=-c $(CFLAGS_HW_CFG) $(CFLAGS_BUILD_MODE) -Wall -Os -I ../libarduino -I ../libcommon
 AVRDUDE_VERBOSITY=
 STRIP=avr-strip
 
 SRC := ${wildcard *.c}
-
 INC := ${wildcard *.h}
-
 OBJ := $(SRC:.c=.o)
 
 all: vehicle
@@ -50,4 +57,3 @@ clean:
 mrproper: clean
 	make -C ../libarduino
 	make -C ../libcommon
-
