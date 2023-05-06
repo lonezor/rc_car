@@ -1,4 +1,5 @@
 #include "vehicle.h"
+#include "piezo.h"
 
 #define SAMPLE_SIZE (64)
 static float a0[SAMPLE_SIZE];
@@ -17,15 +18,30 @@ static float voltage_d_decimals = 7;
 
 void vmu_setup()
 {
-  lcd_i2c_init(true);
+  //lcd_i2c_init(true);
   //analogReference(EXTERNAL);
 
-    memset(a0, 0, sizeof(a0));
+//    memset(a0, 0, sizeof(a0));
+
+    pinMode(7, OUTPUT);
 
 }
 
+
+
+uint16_t g_iteration_counter = 0;
+
+
+
 void vmu_loop()
 {
+    piezo_tick(battery_status_normal);
+
+    g_iteration_counter++;
+
+    delay(1);
+
+
     #if 0
     a0[sample_idx] = (float)analogRead(A0);
 
@@ -101,6 +117,6 @@ void vmu_loop()
     voltage_d_decimals++;
     #endif
 
-    // LCD updates only looks okay when at least 500 ms delay is used
-    delay(200);
+   // // LCD updates only looks okay when at least 500 ms delay is used
+   // delay(200);
 }

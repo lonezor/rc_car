@@ -21,3 +21,12 @@ void scu_loop();
 // Voltage Measurement Unit (VMU)
 void vmu_setup();
 void vmu_loop();
+
+extern uint16_t g_iteration_counter;
+
+typedef enum {
+  battery_status_normal,
+  battery_status_warning,
+  battery_status_alarm,
+  battery_status_critical,
+} battery_status_t;
