@@ -1,0 +1,3 @@
+NOTE:
+ - The PIN config between symbol and footprint file needs to be hand edited to
+   match physical layout.
