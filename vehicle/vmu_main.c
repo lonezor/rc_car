@@ -18,12 +18,13 @@ static float voltage_d_decimals = 7;
 
 void vmu_setup()
 {
+    Serial.begin(9600);
+
   //lcd_i2c_init(true);
-  //analogReference(EXTERNAL);
 
 //    memset(a0, 0, sizeof(a0));
 
-    pinMode(7, OUTPUT);
+ //   pinMode(7, OUTPUT);
 
 }
 
@@ -35,11 +36,17 @@ uint16_t g_iteration_counter = 0;
 
 void vmu_loop()
 {
-    piezo_tick(battery_status_normal);
+   // piezo_tick(battery_status_normal);
 
-    g_iteration_counter++;
+  //  g_iteration_counter++;
 
-    delay(1);
+    int v = analogRead(A0);
+
+    char m[1024];
+    snprintf(m, sizeof(m), "value %d", v);
+    Serial.println(m);    
+
+    delay(20);
 
 
     #if 0

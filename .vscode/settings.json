@@ -18,6 +18,8 @@
         "virtual_wire.h": "c",
         "general.h": "c",
         "neopixel_wheel.h": "c",
-        "vehicle.h": "c"
+        "vehicle.h": "c",
+        "liquidcrystal_i2c.h": "c",
+        "live_video_feed_motor.h": "c"
     }
 }

@@ -1596,7 +1596,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid b2e95645-3e40-4f32-b14f-02c0d6aca863)
   )
-  (text "J1 PINS:\n - 01: Momentary Button - Tune Channel A\n - 02: Momentary Button - Tune Channel B\n - 03: Momentary Button - Tune Channel C\n - 04: Momentary Button - Tune Channel D\n - 05: Latching Button - Precise Tuning\n - 06: Momentary Button - Write Tuning State to EEPROM\n - 07: Piezo Warning/Alarm/Critical\n - 08: High Accuracy Range\n - 09: Test Piezo\n - 10: UART RX\n - 11: UART TX\n - 12: 3.3V"
+  (text "J1 PINS:\n - 01: Momentary Button - Tune Channel A\n - 02: Momentary Button - Tune Channel B\n - 03: Momentary Button - Tune Channel C\n - 04: Momentary Button - Tune Channel D\n - 05: Latching Button - Precise Tuning\n - 06: Momentary Button - Write Tuning State to EEPROM\n - 07: Piezo Warning/Alarm/Critical\n - 08: Latching Button - High Accuracy Range\n - 09: Momentary Button - Test Piezo\n - 10: UART RX\n - 11: UART TX\n - 12: 3.3V"
     (at 110.49 40.64 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid d12be8b0-90c4-43d2-8e8b-ce818d3df480)

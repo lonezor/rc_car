@@ -17,6 +17,6 @@
 #define PIEZO_IDLE_TICKS_CRITICAL (0)
 #define PIEZO_ACTIVE_TICKS (100)
 
-#define PIEZO_PIN (7)
+#define PIEZO_PIN (2)
 
 void piezo_tick(battery_status_t status);

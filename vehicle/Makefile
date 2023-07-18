@@ -8,10 +8,6 @@
 CFLAGS_HW_CFG := -mmcu=atmega2560 -DF_CPU=16000000
 AVRDUDE_HW_CFG := -p m2560 -c stk500v2 -P/dev/ttyACM0
 
-# Arduino Nano
-#CFLAGS_HW_CFG := -mmcu=atmega328p -DF_CPU=16000000
-#AVRDUDE_HW_CFG := -p m328p -c stk500v2 -P/dev/ttyACM0
-
 # Build mode
 #CFLAGS_BUILD_MODE := -DPCU_BUILD
 #CFLAGS_BUILD_MODE := -DSCU_BUILD
